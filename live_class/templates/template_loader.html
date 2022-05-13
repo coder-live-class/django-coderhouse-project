@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is a template using Django Context and loader</h1>
+    <hr></hr>
+    <p style="color: red" > This is my name: {{name}}</p>
+    <p style="color: blue" > This is my last_name: {{last_name}}</p>
+
+    <h1>This template was created on: {{now}}</h1>
+    <hr></hr>
+
+    <h3>These are my grades</h3>
+    <ul>
+        {% for grade in my_grades %}
+            <li>{{ grade }}</li>
+        {% endfor %}
+    </ul>
+    <h3>These are my university grades description.:</h3>
+    <ul>
+        {% for grade in my_grades %}
+            {% if grade < 4 %}
+                <li style="color: red" >Bad grade: {{grade}}</li>
+            {% else %}
+                <li style="color: blue" >Good grade: {{grade}}</li>
+
+            {% endif %}
+        <br>
+        {%endfor%}
+    </ul>
+    <hr></hr>
+</body>
+</html>
