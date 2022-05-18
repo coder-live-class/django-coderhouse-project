@@ -1,9 +1,10 @@
 from datetime import datetime
+from re import template
 from django.http import HttpResponse
 from django.template import Template, Context
 from django.template import loader
 
-from app_coder.models import Course
+from coder_course.models import Course
 
 def template_using_context(
     self, name: str = 'Name', last_name: str = 'Last_name'):
@@ -23,6 +24,7 @@ def template_using_context(
     render = template.render(my_context)
     return HttpResponse(render)
 
+
 def template_using_loader(
     self, name: str = 'Name', last_name: str = 'Last_name'):
 
@@ -37,32 +39,8 @@ def template_using_loader(
     render = template.render(context_dict)
     return HttpResponse(render)
 
-def new_course(
-    self, name: str = 'course', code: int = 0):
 
-    template = loader.get_template('template_course.html')
-
-    course = Course(name=name, code=code)
-    course.save() # save into the DB
-
-    context_dict = {
-        'course': course
-    }
-
-    render = template.render(context_dict)
-    return HttpResponse(render)
-
-def list_course(
-    self, name: str = 'course', code: int = 0):
-
-    template = loader.get_template('template_course.html')
-
-    course = Course(name=name, code=code)
-    course.save() # save into the DB
-
-    context_dict = {
-        'course': course
-    }
-
-    render = template.render(context_dict)
+def index(self):
+    template = loader.get_template('index.html')
+    render = template.render()
     return HttpResponse(render)
