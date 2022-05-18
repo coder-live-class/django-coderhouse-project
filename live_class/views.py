@@ -24,6 +24,7 @@ def template_using_context(
     render = template.render(my_context)
     return HttpResponse(render)
 
+
 def template_using_loader(
     self, name: str = 'Name', last_name: str = 'Last_name'):
 
@@ -38,60 +39,6 @@ def template_using_loader(
     render = template.render(context_dict)
     return HttpResponse(render)
 
-def post_course(
-    self, name: str = 'course', code: int = 0):
-
-    template = loader.get_template('post_course.html')
-
-    course = Course(name=name, code=code)
-    course.save() # save into the DB
-
-    context_dict = {
-        'course': course
-    }
-
-    render = template.render(context_dict)
-    return HttpResponse(render)
-
-def all_courses(self):
-
-    template = loader.get_template('all_courses.html')
-
-    courses = Course.objects.all()
-
-    print('courses', type(courses), '\n', courses)
-    context_dict = {
-        'courses': courses
-    }
-
-    render = template.render(context_dict)
-    return HttpResponse(render)
-
-def get_course(self, id: int):
-
-    template = loader.get_template('get_course.html')
-
-    course = Course.objects.get(pk=id)
-
-    context_dict = {
-        'course': course
-    }
-
-    render = template.render(context_dict)
-    return HttpResponse(render)
-
-def get_course(self, id: int):
-
-    template = loader.get_template('get_course.html')
-
-    course = Course.objects.get(pk=id)
-
-    context_dict = {
-        'course': course
-    }
-
-    render = template.render(context_dict)
-    return HttpResponse(render)
 
 def index(self):
     template = loader.get_template('index.html')

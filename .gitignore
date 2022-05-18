@@ -1,2 +1,6 @@
 venv/*
-*/static/*
+*.log
+*.pot
+*.pyc
+*/__pycache__/
+x_*
