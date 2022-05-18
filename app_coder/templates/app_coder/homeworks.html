@@ -1,0 +1,22 @@
+{% extends "app_coder/index.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h2>Lista de Entregables</h2>
+<hr></hr>
+<ul>
+    {% for homework in homeworks %}
+        <li>
+            Entregable: {{homework.name}}
+            -- e-mail: {{homework.due_date}}
+            -- Engregado:
+                {% if homework.is_delivered %}
+                    Si
+                {% else %}
+                    No
+                {% endif%}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
