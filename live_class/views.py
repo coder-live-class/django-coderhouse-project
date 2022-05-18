@@ -1,9 +1,10 @@
 from datetime import datetime
+from re import template
 from django.http import HttpResponse
 from django.template import Template, Context
 from django.template import loader
 
-from app_coder.models import Course
+from coder_course.models import Course
 
 def template_using_context(
     self, name: str = 'Name', last_name: str = 'Last_name'):
@@ -37,10 +38,10 @@ def template_using_loader(
     render = template.render(context_dict)
     return HttpResponse(render)
 
-def new_course(
+def post_course(
     self, name: str = 'course', code: int = 0):
 
-    template = loader.get_template('template_course.html')
+    template = loader.get_template('post_course.html')
 
     course = Course(name=name, code=code)
     course.save() # save into the DB
@@ -52,17 +53,47 @@ def new_course(
     render = template.render(context_dict)
     return HttpResponse(render)
 
-def list_course(
-    self, name: str = 'course', code: int = 0):
+def all_courses(self):
 
-    template = loader.get_template('template_course.html')
+    template = loader.get_template('all_courses.html')
 
-    course = Course(name=name, code=code)
-    course.save() # save into the DB
+    courses = Course.objects.all()
+
+    print('courses', type(courses), '\n', courses)
+    context_dict = {
+        'courses': courses
+    }
+
+    render = template.render(context_dict)
+    return HttpResponse(render)
+
+def get_course(self, id: int):
+
+    template = loader.get_template('get_course.html')
+
+    course = Course.objects.get(pk=id)
 
     context_dict = {
         'course': course
     }
 
     render = template.render(context_dict)
+    return HttpResponse(render)
+
+def get_course(self, id: int):
+
+    template = loader.get_template('get_course.html')
+
+    course = Course.objects.get(pk=id)
+
+    context_dict = {
+        'course': course
+    }
+
+    render = template.render(context_dict)
+    return HttpResponse(render)
+
+def index(self):
+    template = loader.get_template('index.html')
+    render = template.render()
     return HttpResponse(render)

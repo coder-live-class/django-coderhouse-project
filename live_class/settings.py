@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_coder',
+    'coder_course',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/home/jfpinedap/coderhouse/class_18_Django_II/live_class/live_class/templates/',
+            '/home/jfpinedap/coderhouse/class_19_playground_I/django-coderhouse-project/live_class/templates/',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

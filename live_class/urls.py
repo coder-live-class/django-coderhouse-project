@@ -19,13 +19,19 @@ from django.urls import path
 from live_class.views import (
     template_using_context,
     template_using_loader,
-    new_course,
+    get_course,
+    post_course,
+    all_courses,
+    index,
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index),
     path('template_using_context/<str:name>/<str:last_name>', template_using_context),
     path('template_using_loader/<str:name>/<str:last_name>', template_using_loader),
     path('template_using_loader/<str:name>/<str:last_name>', template_using_loader),
-    path('new_course/<str:name>/<str:code>', new_course),
+    path('get-course/<int:id>', get_course),
+    path('post-course/<str:name>/<int:code>', post_course),
+    path('all-courses/', all_courses),
 ]
