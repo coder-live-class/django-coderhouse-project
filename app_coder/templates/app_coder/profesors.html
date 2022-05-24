@@ -1,0 +1,18 @@
+{% extends "app_coder/index.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h2>Lista de Profesores</h2>
+<a class="card_custom" href="{% url 'ProfesorDjangoForms' %}">Crear nuevo Profesor</a>
+<hr></hr>
+<ul>
+    {% for profesor in profesors %}
+        <li>
+            Profesor: {{profesor.name}} {{profesor.last_name}}
+            -- e-mail: {{profesor.email}}
+            -- Profesión: {{profesor.profession}}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

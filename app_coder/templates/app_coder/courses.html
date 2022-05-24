@@ -1,0 +1,17 @@
+{% extends "app_coder/index.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h2>Lista de Cursos</h2>
+<a class="card_custom" href="{% url 'CourseDjangoForms' %}">Crear nuevo Curso</a>
+<hr></hr>
+<ul>
+    {% for course in courses %}
+        <li>
+            Curso: {{course.name}}
+            -- Camada: {{course.code}}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
