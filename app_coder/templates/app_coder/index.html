@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Index 2</title>
+        <title>{% block title %}{{ settings.APP_NAME }}{% endblock %}</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'app_coder/assets/favicon.ico' %}" />
         <!-- Bootstrap icons-->
@@ -83,7 +83,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="{% static 'app_coder/js/scripts.js' %}"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

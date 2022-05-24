@@ -3,6 +3,7 @@
 {% block contenidoQueCambia %}
 
 <h2>Lista de Profesores</h2>
+<a class="card_custom" href="{% url 'ProfesorDjangoForms' %}">Crear nuevo Profesor</a>
 <hr></hr>
 <ul>
     {% for profesor in profesors %}
