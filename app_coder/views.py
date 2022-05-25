@@ -185,6 +185,7 @@ def homework_forms_django(request):
 
 
 def search(request):
+    context_dict = dict()
     if request.GET['text_search']:
         search_param = request.GET['text_search']
         courses = Course.objects.filter(name__contains=search_param)
