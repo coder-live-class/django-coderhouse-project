@@ -1,0 +1,20 @@
+{% extends "app_coder/index.html" %}
+{% load static %}
+{% block app_coder_content %}
+
+<h2>Formulario para guardar/editar curso</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>
+    <table>
+        {{ form.as_table }}
+    </table>
+    </p>
+    <p>
+        <input type="submit" class="btn btn-primary" value="Guardar curso" />
+    </p>
+</form>
+
+{% endblock %}
