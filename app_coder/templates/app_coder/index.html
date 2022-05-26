@@ -17,16 +17,18 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'app_coder/css/styles.css' %}" rel="stylesheet" />
+        <!-- Awesome fonts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'Home' %}">Home</a>
-                <a class="navbar-brand" href="{% url 'Profesors' %}">Profesores</a>
-                <a class="navbar-brand" href="{% url 'Courses' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'Students' %}">Estudiantes</a>
-                <a class="navbar-brand" href="{% url 'Homeworks' %}">Entregables</a>
+                <a class="navbar-brand" href="{% url 'app_coder:Home' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'app_coder:Profesors' %}">Profesores</a>
+                <a class="navbar-brand" href="{% url 'app_coder:course-list' %}">Cursos</a>
+                <a class="navbar-brand" href="{% url 'app_coder:Students' %}">Estudiantes</a>
+                <a class="navbar-brand" href="{% url 'app_coder:Homeworks' %}">Entregables</a>
                 <a class="btn btn-primary" href="#login">Iniciar</a>
             </div>
         </nav>
@@ -37,9 +39,9 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Esta es nuestra Web Intermedia <br> Django-CoderHouse</h1>
+                            <h1 class="mb-5">Este es nuestro Playground Avanzado <br> Django-CoderHouse</h1>
                             <div class="text-lg-start text-white">
-                                {% block contenidoQueCambia %}
+                                {% block app_coder_content %}
 
                                 {% endblock %}
                             </div>

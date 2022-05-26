@@ -1,12 +1,9 @@
 {% extends "app_coder/index.html" %}
 {% load static %}
-{% block contenidoQueCambia %}
+{% block app_coder_content %}
 
 <h2>Formulario para insersión de un nuevo curso</h2>
 <hr></hr>
-{% if course_form.errors %}
-    <p style="color: red">Por favor revisar los datos, están mal</p>
-{% endif %}
 
 <form action="" method="POST">
     {% csrf_token %}

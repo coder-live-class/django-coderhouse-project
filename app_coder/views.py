@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q
+from django.forms.models import model_to_dict
 
 from app_coder.models import Course, Student, Profesor, Homework
 from app_coder.forms import CourseForm, ProfesorForm, HomeworkForm
@@ -150,6 +151,65 @@ def profesor_forms_django(request):
         template_name='app_coder/profesor_django_forms.html'
     )
 
+def update_profesor(request, pk: int):
+    profesor = Profesor.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        profesor_form = ProfesorForm(request.POST)
+        if profesor_form.is_valid():
+            data = profesor_form.cleaned_data
+            profesor.name = data['name']
+            profesor.last_name = data['last_name']
+            profesor.email = data['email']
+            profesor.profession = data['profession']
+            profesor.save()
+
+            profesors = Profesor.objects.all()
+            context_dict = {
+                'profesors': profesors
+            }
+            return render(
+                request=request,
+                context=context_dict,
+                template_name="app_coder/profesors.html"
+            )
+
+    profesor_form = ProfesorForm(model_to_dict(profesor))
+    context_dict = {
+        'profesor': profesor,
+        'profesor_form': profesor_form,
+    }
+    return render(
+        request=request,
+        context=context_dict,
+        template_name='app_coder/profesor_form.html'
+    )
+
+
+def delete_profesor(request, pk: int):
+    profesor = Profesor.objects.get(pk=pk)
+    if request.method == 'POST':
+        profesor.delete()
+
+        profesors = Profesor.objects.all()
+        context_dict = {
+            'profesors': profesors
+        }
+        return render(
+            request=request,
+            context=context_dict,
+            template_name="app_coder/profesors.html"
+        )
+
+    context_dict = {
+        'profesor': profesor,
+    }
+    return render(
+        request=request,
+        context=context_dict,
+        template_name='app_coder/profesor_confirm_delete.html'
+    )
+
 
 def homework_forms_django(request):
     if request.method == 'POST':
@@ -212,3 +272,40 @@ def search(request):
         context=context_dict,
         template_name="app_coder/home.html",
     )
+
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+
+class CourseListView(ListView):
+    model = Course
+    template_name = "app_coder/course_list.html"
+
+
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = "app_coder/course_detail.html"
+
+
+class CourseCreateView(CreateView):
+    model = Course
+    # template_name = "app_coder/course_form.html"
+    # success_url = "/app_coder/courses"
+    success_url = reverse_lazy('app_coder:course-list')
+    fields = ['name', 'code']
+
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    # template_name = "app_coder/course_form.html"
+    # success_url = "/app_coder/courses"
+    success_url = reverse_lazy('app_coder:course-list')
+    fields = ['name', 'code']
+
+
+class CourseDeleteView(DeleteView):
+    model = Course
+    # success_url = "/app_coder/courses"
+    success_url = reverse_lazy('app_coder:course-list')
