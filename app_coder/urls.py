@@ -19,6 +19,20 @@ urlpatterns = [
 
 
     # Dajngo documentation -->  https://docs.djangoproject.com/en/4.0/topics/class-based-views/generic-editing/
+    # Confirmo la url de la documentación es correcta, deben hacer scroll hasta esta parte:
+    #
+    # from django.urls import path
+    # from myapp.views import AuthorCreateView, AuthorDeleteView, AuthorUpdateView
+
+    # urlpatterns = [
+    #     # ...
+    #     path('author/add/', AuthorCreateView.as_view(), name='author-add'),
+    #     path('author/<int:pk>/', AuthorUpdateView.as_view(), name='author-update'),
+    #     path('author/<int:pk>/delete/', AuthorDeleteView.as_view(), name='author-delete'),
+    # ]
+    #
+    # Acá se ve la forma clara cómo Django realiza de forma stándar los nombres para urls, views y name del path.
+
     path('courses', views.CourseListView.as_view(), name='course-list'),
     path('course/add/', views.CourseCreateView.as_view(), name='course-add'),
     path('course/<int:pk>/detail', views.CourseDetailView.as_view(), name='course-detail'),
