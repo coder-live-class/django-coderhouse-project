@@ -3,7 +3,7 @@
 {% block app_coder_content %}
 
 <h2>Lista de Profesores</h2>
-<a class="card_custom" href="{% url 'app_coder:ProfesorDjangoForms' %}">Crear nuevo Profesor</a>
+<a class="card_custom" href="{% url 'app_coder:profesor-add' %}">Crear nuevo Profesor</a>
 <hr>
 </hr>
 <ul>
@@ -11,11 +11,11 @@
     <li>
         {{profesor}}
         (
-        <a href="{% url 'app_coder:UpdateProfesor' profesor.id %}">
+        <a href="{% url 'app_coder:profesor-update' profesor.id %}">
             <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"></i>
         </a>
         |
-        <a href="{% url 'app_coder:DeleteProfesor' profesor.id %}">
+        <a href="{% url 'app_coder:profesor-delete' profesor.id %}">
             <i class="fa fa-trash" style="color: rgb(0, 0, 100);"></i>
         </a>
         )

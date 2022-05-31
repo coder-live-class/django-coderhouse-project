@@ -6,7 +6,7 @@ git clone https://github.com/coder-live-class/django-coderhouse-project.git
 
 cd django-coderhouse-project
 
-git checkout class_22
+git checkout class_23
 
 ```
 

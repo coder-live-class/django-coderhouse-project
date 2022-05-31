@@ -29,7 +29,11 @@
                 <a class="navbar-brand" href="{% url 'app_coder:course-list' %}">Cursos</a>
                 <a class="navbar-brand" href="{% url 'app_coder:Students' %}">Estudiantes</a>
                 <a class="navbar-brand" href="{% url 'app_coder:Homeworks' %}">Entregables</a>
-                <a class="btn btn-primary" href="#login">Iniciar</a>
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary" href="{% url 'app_coder:user-logout' %}">Cerrar Sesión</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'app_coder:user-login' %}">Iniciar Sesión</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->

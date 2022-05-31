@@ -3,7 +3,7 @@
 {% block app_coder_content %}
 
 <h2>Lista de Entregables</h2>
-<a class="card_custom" href="{% url 'app_coder:HomeworkDjangoForms' %}">Crear nueva Entrega</a>
+<a class="card_custom" href="{% url 'app_coder:homework-add' %}">Crear nueva Entrega</a>
 <hr></hr>
 <ul>
     {% for homework in homeworks %}
