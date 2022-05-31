@@ -7,14 +7,6 @@
 
 <form action="/app_coder/search" method="GET">
     <div>
-        <input type="text" name="text_search" id="course_name" placeholder="Busqueda por nommbre">
-        <input type="submit" value="Buscar por Nombre">
-    </div>
-    <div>
-        <input type="number" name="code_search" id="course_code" placeholder="Busqueda por camada">
-        <input type="submit" value="Buscar por camada">
-    </div>
-    <div>
         <input type="text" name="all_search" id="course_code_or_name" placeholder="Busqueda general">
         <input type="submit" value="Buscar">
     </div>
@@ -22,6 +14,9 @@
 </form>
 
 <hr></hr>
+
+<!-- {% if user.is_authenticated %} -->
+<!-- {% endif %} -->
 
 {% if courses %}
     <ul>

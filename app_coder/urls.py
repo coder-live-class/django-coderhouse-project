@@ -11,10 +11,10 @@ urlpatterns = [
     path('homeworks', views.homeworks, name='Homeworks'),
     path('formHTML', views.form_hmtl),
     path('course-django-forms', views.course_forms_django, name='CourseDjangoForms'),
-    path('profesor-django-forms', views.profesor_forms_django, name='ProfesorDjangoForms'),
-    path('profesor/<int:pk>/update', views.update_profesor, name='UpdateProfesor'),
-    path('profesor/<int:pk>/delete', views.delete_profesor, name='DeleteProfesor'),
-    path('homework-django-forms', views.homework_forms_django, name='HomeworkDjangoForms'),
+    path('profesor/add', views.profesor_forms_django, name='profesor-add'),
+    path('profesor/<int:pk>/update', views.update_profesor, name='profesor-update'),
+    path('profesor/<int:pk>/delete', views.delete_profesor, name='profesor-delete'),
+    path('homework/add', views.homework_forms_django, name='homework-add'),
     path('search', views.search, name='Search'),
 
 
@@ -38,4 +38,7 @@ urlpatterns = [
     path('course/<int:pk>/detail', views.CourseDetailView.as_view(), name='course-detail'),
     path('course/<int:pk>/update', views.CourseUpdateView.as_view(), name='course-update'),
     path('course/<int:pk>/delete', views.CourseDeleteView.as_view(), name='course-delete'),
+    path('login', views.login_request, name='user-login'),
+    path('logout', views.logout_request, name='user-logout'),
+    path('register', views.register, name='user-register'),
 ]

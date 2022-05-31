@@ -1,7 +1,8 @@
-import datetime
 from django import forms
 from django.forms import ModelForm
 from app_coder.models import Profesor
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class CourseForm(forms.Form):
@@ -28,3 +29,15 @@ class HomeworkForm(forms.Form):
         widget=forms.TextInput(attrs={'placeholder': 'yyyy-mm-dd'})
     )
     is_delivered = forms.BooleanField(label='Entregado', required=False)
+
+
+class UserRegisterForm(UserCreationForm):
+
+    email = forms.EmailField()
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        help_texts = {k: "" for k in fields}

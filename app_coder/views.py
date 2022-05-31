@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from django.forms.models import model_to_dict
+from django.contrib.auth.decorators import login_required
 
 from app_coder.models import Course, Student, Profesor, Homework
 from app_coder.forms import CourseForm, ProfesorForm, HomeworkForm
@@ -118,6 +119,7 @@ def course_forms_django(request):
     )
 
 
+@login_required
 def profesor_forms_django(request):
     if request.method == 'POST':
         profesor_form = ProfesorForm(request.POST)
@@ -151,6 +153,8 @@ def profesor_forms_django(request):
         template_name='app_coder/profesor_django_forms.html'
     )
 
+
+@login_required
 def update_profesor(request, pk: int):
     profesor = Profesor.objects.get(pk=pk)
 
@@ -186,6 +190,7 @@ def update_profesor(request, pk: int):
     )
 
 
+@login_required
 def delete_profesor(request, pk: int):
     profesor = Profesor.objects.get(pk=pk)
     if request.method == 'POST':
@@ -246,19 +251,7 @@ def homework_forms_django(request):
 
 def search(request):
     context_dict = dict()
-    if request.GET['text_search']:
-        search_param = request.GET['text_search']
-        courses = Course.objects.filter(name__contains=search_param)
-        context_dict = {
-            'courses': courses
-        }
-    elif request.GET['code_search']:
-        search_param = request.GET['code_search']
-        courses = Course.objects.filter(code__contains=search_param)
-        context_dict = {
-            'courses': courses
-        }
-    elif request.GET['all_search']:
+    if request.GET['all_search']:
         search_param = request.GET['all_search']
         query = Q(name__contains=search_param)
         query.add(Q(code__contains=search_param), Q.OR)
@@ -277,6 +270,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class CourseListView(ListView):
@@ -289,7 +283,7 @@ class CourseDetailView(DetailView):
     template_name = "app_coder/course_detail.html"
 
 
-class CourseCreateView(CreateView):
+class CourseCreateView(LoginRequiredMixin, CreateView):
     model = Course
     # template_name = "app_coder/course_form.html"
     # success_url = "/app_coder/courses"
@@ -297,7 +291,7 @@ class CourseCreateView(CreateView):
     fields = ['name', 'code']
 
 
-class CourseUpdateView(UpdateView):
+class CourseUpdateView(LoginRequiredMixin, UpdateView):
     model = Course
     # template_name = "app_coder/course_form.html"
     # success_url = "/app_coder/courses"
@@ -305,7 +299,67 @@ class CourseUpdateView(UpdateView):
     fields = ['name', 'code']
 
 
-class CourseDeleteView(DeleteView):
+class CourseDeleteView(LoginRequiredMixin, DeleteView):
     model = Course
     # success_url = "/app_coder/courses"
     success_url = reverse_lazy('app_coder:course-list')
+
+
+from django.shortcuts import redirect
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+from app_coder.forms import UserRegisterForm
+
+from django.contrib.auth.decorators import login_required
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        # form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(
+                request=request,
+                context={"mensaje": "Usuario Registrado satisfactoriamente."},
+                template_name="app_coder/home.html",
+            )
+    else:
+        form = UserCreationForm()
+        # form = UserRegisterForm()
+    return render(
+        request=request,
+        context={"form":form},
+        template_name="app_coder/register.html",
+    )
+
+
+def login_request(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                template_name = "app_coder/home.html"
+        else:
+            template_name = "app_coder/login.html"
+        return render(
+            request=request,
+            context={'form': form},
+            template_name=template_name,
+        )
+
+    form = AuthenticationForm()
+    return render(
+        request=request,
+        context={'form': form},
+        template_name="app_coder/login.html",
+    )
+
+
+def logout_request(request):
+      logout(request)
+      return redirect("app_coder:Home")
