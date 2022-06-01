@@ -315,18 +315,17 @@ from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        # form = UserRegisterForm(request.POST)
+        # form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return render(
                 request=request,
                 context={"mensaje": "Usuario Registrado satisfactoriamente."},
-                template_name="app_coder/home.html",
+                template_name="app_coder/login.html",
             )
-    else:
-        form = UserCreationForm()
-        # form = UserRegisterForm()
+    # form = UserCreationForm()
+    form = UserRegisterForm()
     return render(
         request=request,
         context={"form":form},
