@@ -2,8 +2,16 @@
 {% load static %}
 {% block app_coder_content %}
 
+
+{% if user.is_authenticated %}
+<div class="text-center">
+    <h2>Bienvenido {{ user.username }}</h2>
+    <img height="40px" src="{{url}}" alt="">
+</div>
+{% endif %}
 <h2>Buscador de cursos</h2>
-<hr></hr>
+<hr>
+</hr>
 
 <form action="/app_coder/search" method="GET">
     <div>
@@ -13,20 +21,19 @@
 
 </form>
 
-<hr></hr>
+<hr>
+</hr>
 
-<!-- {% if user.is_authenticated %} -->
-<!-- {% endif %} -->
 
 {% if courses %}
-    <ul>
-        {% for course in courses %}
-            <li>
-                Curso: {{course.name}}
-                -- Camada: {{course.code}}
-            </li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for course in courses %}
+    <li>
+        Curso: {{course.name}}
+        -- Camada: {{course.code}}
+    </li>
+    {% endfor %}
+</ul>
 {% endif %}
 
 {% endblock %}

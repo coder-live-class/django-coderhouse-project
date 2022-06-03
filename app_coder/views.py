@@ -3,12 +3,21 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.contrib.auth.decorators import login_required
 
-from app_coder.models import Course, Student, Profesor, Homework
+from app_coder.models import Course, Student, Profesor, Homework, Avatar
 from app_coder.forms import CourseForm, ProfesorForm, HomeworkForm
 
 
 def index(request):
-    return render(request, "app_coder/home.html")
+    avatars = Avatar.objects.filter(user=request.user.id)
+    if avatars.exists():
+        context_dict = {"url": avatars[0].image.url}
+    else:
+        context_dict = {}
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="app_coder/home.html"
+    )
 
 
 def profesors(request):
@@ -308,7 +317,7 @@ class CourseDeleteView(LoginRequiredMixin, DeleteView):
 from django.shortcuts import redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-from app_coder.forms import UserRegisterForm
+from app_coder.forms import UserRegisterForm, UserEditForm
 
 from django.contrib.auth.decorators import login_required
 
@@ -362,3 +371,26 @@ def login_request(request):
 def logout_request(request):
       logout(request)
       return redirect("app_coder:Home")
+
+
+@login_required
+def user_update(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserEditForm(request.POST)
+        if form.is_valid():
+            informacion = form.cleaned_data
+            user.username = informacion['username']
+            user.email = informacion['email']
+            user.password1 = informacion['password1']
+            user.password2 = informacion['password1']
+            user.save()
+
+            return render(request, "app_coder/home.html")
+
+    form= UserEditForm(model_to_dict(user))
+    return render(
+        request=request,
+        context={'form': form},
+        template_name="app_coder/user_form.html",
+    )

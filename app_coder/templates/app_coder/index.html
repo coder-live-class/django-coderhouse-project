@@ -30,7 +30,7 @@
                 {% if user.is_authenticated %}
                 <a class="navbar-brand" href="{% url 'app_coder:Students' %}">Estudiantes</a>
                 <a class="navbar-brand" href="{% url 'app_coder:Homeworks' %}">Entregables</a>
-                <a class="navbar-brand">{{user.username}}</a>
+                <a class="btn btn-secondary" href="{% url 'app_coder:user-update' %}">Editar usuario</a>
                 <a class="btn btn-primary" href="{% url 'app_coder:user-logout' %}">Cerrar Sesión</a>
                 {% else %}
                 <a class="btn btn-primary" href="{% url 'app_coder:user-login' %}">Iniciar Sesión</a>
