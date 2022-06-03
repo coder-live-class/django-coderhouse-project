@@ -30,7 +30,7 @@
                 {% if user.is_authenticated %}
                 <a class="navbar-brand" href="{% url 'app_coder:Students' %}">Estudiantes</a>
                 <a class="navbar-brand" href="{% url 'app_coder:Homeworks' %}">Entregables</a>
-                <a class="navbar-brand">{{user.username}}</a>
+                <a class="btn btn-secondary" href="{% url 'app_coder:user-update' %}">Editar usuario</a>
                 <a class="btn btn-primary" href="{% url 'app_coder:user-logout' %}">Cerrar Sesión</a>
                 {% else %}
                 <a class="btn btn-primary" href="{% url 'app_coder:user-login' %}">Iniciar Sesión</a>
@@ -45,7 +45,13 @@
                         <div class="text-center text-white">
                             <!-- Page heading-->
                             <h1 class="mb-5">Este es nuestro Playground Avanzado <br> Django-CoderHouse</h1>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <h4><p style="color: rgb(131, 31, 0)" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p></h4>
+                                {% endfor %}
+                            {% endif %}
                             <div class="text-lg-start text-white">
+
                                 {% block app_coder_content %}
 
                                 {% endblock %}
