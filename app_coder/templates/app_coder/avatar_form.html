@@ -1,0 +1,15 @@
+{% extends "app_coder/index.html" %}
+{% load static %}
+{% block app_coder_content %}
+
+<h2>Formulario para carga de Imagen de Avatar</h2>
+<hr></hr>
+<h3>Usuario: {{user.username}}</h3>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Cargar Imagen</button>
+</form>
+
+{% endblock %}

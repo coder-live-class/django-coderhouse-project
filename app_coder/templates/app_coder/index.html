@@ -45,7 +45,13 @@
                         <div class="text-center text-white">
                             <!-- Page heading-->
                             <h1 class="mb-5">Este es nuestro Playground Avanzado <br> Django-CoderHouse</h1>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <h4><p style="color: rgb(131, 31, 0)" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p></h4>
+                                {% endfor %}
+                            {% endif %}
                             <div class="text-lg-start text-white">
+
                                 {% block app_coder_content %}
 
                                 {% endblock %}
