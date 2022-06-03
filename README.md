@@ -6,7 +6,7 @@ git clone https://github.com/coder-live-class/django-coderhouse-project.git
 
 cd django-coderhouse-project
 
-git checkout class_23
+git checkout class_24
 
 ```
 
@@ -41,6 +41,17 @@ python manage.py createsuperuser
 - Ejecutar proyecto
 ```bash
 python manage.py runserver
+```
+# Comandos útiles para Django
+
+## Crear proyecto
+```bash
+django-admin startproject <nombre del proyecto>
+cd <nombre del proyecto>
+```
+## Crear aplicación a un proyecto
+```bash
+python manage.py startapp <nombre del app>
 ```
 # Comandos básicos para Git
 
