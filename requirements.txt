@@ -1,3 +1,4 @@
 Django==4.0.5
 Pillow==9.1.1
 django_environ==0.8.1
+django_heroku==0.3.1
