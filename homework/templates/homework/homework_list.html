@@ -1,0 +1,23 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block coderhouse_project_content %}
+
+<h2>Lista de Entregables</h2>
+<a class="card_custom" href="{% url 'homework:homework-add' %}">Crear nueva Entrega</a>
+<hr></hr>
+<ul>
+    {% for homework in homeworks %}
+        <li>
+            Entregable: {{homework.name}}
+            -- e-mail: {{homework.due_date}}
+            -- Engregado:
+                {% if homework.is_delivered %}
+                    Si
+                {% else %}
+                    No
+                {% endif%}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

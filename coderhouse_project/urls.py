@@ -20,8 +20,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('app_coder/', include('app_coder.urls')),
+    path('', include('home.urls')),
+    path('course/', include('course.urls')),
+    path('homework/', include('homework.urls')),
+    path('profesor/', include('profesor.urls')),
+    path('student/', include('student.urls')),
+    path('user/', include('user.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

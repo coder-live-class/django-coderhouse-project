@@ -1,0 +1,10 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block coderhouse_project_content %}
+
+<h2>Detalle del Estudiente</h2>
+<hr></hr>
+<p><h3>Estudiente: {{ student.name }} {{ student.last_name }}</h4></p>
+<p><h4>Correo electrónico: {{ student.email }}</h4></p>
+<p><a class="btn2 btn-primary" href="{% url 'student:student-list' %}">Regresar a la lista de estudientes</a></p>
+{% endblock %}

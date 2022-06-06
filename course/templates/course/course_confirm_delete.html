@@ -1,0 +1,16 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block coderhouse_project_content %}
+
+<h2>Eliminar Curso</h2>
+<hr></hr>
+
+<p>Estás seguro de eliminar el Curso: {{ course.name }}?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn2 btn-warning" type="submit" value="Si, eliminar.">
+    <a class="btn2 btn-primary" href="{% url 'course:course-list' %}" >Cancelar</a>
+</form>
+
+{% endblock %}
