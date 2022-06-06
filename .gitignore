@@ -7,4 +7,5 @@ venv/*
 x_*
 db.sqlite3
 static/*
+staticfiles/*
 media/*
