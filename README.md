@@ -6,7 +6,7 @@ git clone https://github.com/coder-live-class/django-coderhouse-project.git
 
 cd django-coderhouse-project
 
-git checkout class_24
+git checkout class_25
 
 ```
 
@@ -28,7 +28,7 @@ pip install Django
 
 - Crear base de datos con los Modelos (hacer migraciones y migrar)
 ```bash
-python manage.py makemigrations app_coder
+python manage.py makemigrations
 
 python manage.py migrate
 ```

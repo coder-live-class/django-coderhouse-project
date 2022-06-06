@@ -1,0 +1,19 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block coderhouse_project_content %}
+
+<h2>Login</h2>
+<hr></hr>
+
+{% if form.errors %}
+<p style="color: red">Combinación de username y password incorrecta, intenta de nuevo.</p>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a class="btn2 btn-dark" href="{% url 'user:user-register' %}" >Registo</a>
+    <button type="submit">Iniciar Sesión</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block coderhouse_project_content %}
+
+<h2>Lista de Profesores</h2>
+{% if user.is_authenticated %}
+<a class="card_custom" href="{% url 'profesor:profesor-add' %}">Crear nuevo Profesor</a>
+{% endif %}
+<hr>
+</hr>
+<ul>
+    {% for profesor in profesors %}
+    <li>
+        {{profesor}}
+        {% if user.is_authenticated %}
+        (
+        <a href="{% url 'profesor:profesor-update' profesor.id %}">
+            <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"></i>
+        </a>
+        |
+        <a href="{% url 'profesor:profesor-delete' profesor.id %}">
+            <i class="fa fa-trash" style="color: rgb(0, 0, 100);"></i>
+        </a>
+        )
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

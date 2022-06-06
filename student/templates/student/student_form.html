@@ -1,0 +1,14 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block coderhouse_project_content %}
+
+<h2>Formulario para guardar/editar estudiente</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary" value="Guardar estudiente" />
+</form>
+
+{% endblock %}
