@@ -6,5 +6,7 @@
 <hr></hr>
 <p><h3>Curso: {{ course.name }}</h3></p>
 <p><h4>Camada: {{ course.code }}</h4></p>
+<h4>Descripción:</h4>
+<p><textarea readonly rows="7" cols="90" >{{ course.description }}</textarea></p>
 <p><a class="btn2 btn-primary" href="{% url 'course:course-list' %}">Regresar a la lista de cursos</a></p>
 {% endblock %}

@@ -64,6 +64,13 @@
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
+                {% if user.is_superuser %}
+                    <h5><p style="color: rgb(0, 20, 131)" >SuperUser</p></h5>
+                {% else %}
+                    <h5><p style="color: rgb(0, 20, 131)" >Not SuperUser</p></h5>
+                {%endif%}
+            </div>
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
