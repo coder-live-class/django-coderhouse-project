@@ -51,6 +51,12 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+
+- Crear estáticos
+```bash
+python manage.py collectstatic
+```
+
 - Ejecutar proyecto
 ```bash
 python manage.py runserver
